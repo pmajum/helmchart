@@ -1,6 +1,6 @@
 deployments:
   servicelist:
   - service: party
-    image: prasenjit/party-service:v1
+    image: prasenjit/party-service:v2
   - service: company
-    image: prasenjit/company-service:v1
+    image: prasenjit/company-service:v2 
