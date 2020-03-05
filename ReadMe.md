@@ -1,3 +1,5 @@
+helm init --service-account tiller --history-max 200
+
 helm upgrade --install example ./mychart -f ./mychart/domainlist.yaml --set service.type=LoadBalancer
 
 helm upgrade --install example ./mychart -f ./mychart/domainlist.yaml --set service.type=LoadBalancer --set deployments.servicelist[1].image=prasenjit/company-service:v1
