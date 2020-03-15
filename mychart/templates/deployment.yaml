@@ -6,7 +6,7 @@ metadata:
   labels:
 {{ include "mychart.labels" $ | indent 4 }}
 spec:
-  replicas: {{ $.Values.replicaCount }}
+  replicas: {{ .replicas }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "mychart.name" $ }}
@@ -21,6 +21,13 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+      tolerations:
+        - key: node.kubernetes.io/not-ready
+          effect: NoExecute
+          tolerationSeconds: 0
+        - key: node.kubernetes.io/unreachable
+          effect: NoExecute
+          tolerationSeconds: 0
       containers:
         - name: {{ $.Chart.Name }}
           image: "{{ .image }}"
@@ -35,16 +42,10 @@ spec:
             {{- else }}
             {{- toYaml .resources | nindent 12 }}
             {{- end }}
-      {{- with $.Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml $ | nindent 8 }}
-      {{- end }}
+        {{ $.Release.Namespace }}: "true"
     {{- with $.Values.affinity }}
       affinity:
-        {{- toYaml $ | nindent 8 }}
-    {{- end }}
-    {{- with $.Values.tolerations }}
-      tolerations:
         {{- toYaml $ | nindent 8 }}
     {{- end }}
 ---

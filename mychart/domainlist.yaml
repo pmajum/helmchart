@@ -1,13 +1,8 @@
 deployments:
   servicelist:
   - service: party
-    image: prasenjit/party-service:v1
-    resources:
-      limits:
-        cpu: 200m
-        memory: 256Mi
-      requests:
-        cpu: 200m
-        memory: 256Mi
+    replicas: 3
+    image: prasenjit/party-service:v2
   - service: company
-    image: prasenjit/company-service:v1
+    replicas: 3
+    image: prasenjit/company-service:v2
