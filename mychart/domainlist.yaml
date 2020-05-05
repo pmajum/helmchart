@@ -1,8 +1,22 @@
 deployments:
   servicelist:
   - service: party
-    replicas: 3
+    replicas: 1
     image: prasenjit/party-service:v2
+    labels:
+      app: party
+      version: v2
   - service: company
-    replicas: 3
+    replicas: 1
+    image: prasenjit/company-service:v1
+    labels:
+      app: company
+      version: v1
+      slot: green
+  - service: company-v2
+    replicas: 1
     image: prasenjit/company-service:v2
+    labels:
+      app: company
+      version: v2
+      slot: blue

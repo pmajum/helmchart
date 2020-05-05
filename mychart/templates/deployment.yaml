@@ -16,6 +16,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "mychart.name" $ }}
         app.kubernetes.io/instance: {{ $.Release.Name }}
+        {{- toYaml .labels | nindent 8 }}
     spec:
     {{- with $.Values.imagePullSecrets }}
       imagePullSecrets:
@@ -42,8 +43,8 @@ spec:
             {{- else }}
             {{- toYaml .resources | nindent 12 }}
             {{- end }}
-      nodeSelector:
-        {{ $.Release.Namespace }}: "true"
+      #nodeSelector:
+        #{{ $.Release.Namespace }}: "true"
     {{- with $.Values.affinity }}
       affinity:
         {{- toYaml $ | nindent 8 }}
