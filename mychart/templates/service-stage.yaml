@@ -1,8 +1,9 @@
 {{ range .Values.deployments.servicelist }}
+{{- if eq .labels.slot "green" }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "mychart.fullname" $ }}-{{ .service }}
+  name: {{ include "mychart.fullname" $ }}-{{ .service }}-stage
   labels:
 {{ include "mychart.labels" $ | indent 4 }}
 spec:
@@ -15,8 +16,10 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "mychart.name" $ }}
     app.kubernetes.io/instance: {{ $.Release.Name }}
-    {{- toYaml .labels | nindent 4 }}
+    app: {{ .labels.app }}
+    slot: {{ .labels.slot }}
 
 ---
+{{- end }}
 {{end}}
 

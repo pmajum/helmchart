@@ -5,18 +5,19 @@ deployments:
     image: prasenjit/party-service:v2
     labels:
       app: party
-      version: v2
+      slot: blue
+      prod: yes
   - service: company
     replicas: 1
     image: prasenjit/company-service:v1
     labels:
       app: company
-      version: v1
       slot: green
-  - service: company-v2
+      prod: yes
+  - service: company
     replicas: 1
     image: prasenjit/company-service:v2
     labels:
       app: company
-      version: v2
       slot: blue
+      prod: no
