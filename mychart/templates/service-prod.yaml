@@ -1,5 +1,5 @@
 {{ range .Values.deployments.servicelist }}
-{{- if eq .labels.slot "blue" }}
+{{- if eq .labels.production "yes" }}
 apiVersion: v1
 kind: Service
 metadata:

@@ -6,18 +6,18 @@ deployments:
     labels:
       app: party
       slot: blue
-      prod: yes
+      production: "yes"
   - service: company
     replicas: 1
     image: prasenjit/company-service:v1
     labels:
       app: company
-      slot: green
-      prod: yes
+      slot: blue
+      production: "yes"
   - service: company
     replicas: 1
     image: prasenjit/company-service:v2
     labels:
       app: company
-      slot: blue
-      prod: no
+      slot: green
+      production: "no"
