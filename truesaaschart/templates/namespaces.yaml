@@ -1,0 +1,8 @@
+{{ range .Values.deployments.servicelist }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ include "fsgbutruesaaschart.fullname" $ }}-{{ .namespace }}
+  namespace: {{ .namespace }}
+---
+{{end}}
