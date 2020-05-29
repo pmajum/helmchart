@@ -1,0 +1,18 @@
+deployments:
+  servicelist:
+  - service: party
+    namespace: poc-party
+    replicas: 1
+    image: prasenjit/party-service:v1
+    labels:
+      app: party
+      slot: blue
+      production: "yes"
+  - service: company
+    namespace: poc-company
+    replicas: 1
+    image: prasenjit/company-service:v1
+    labels:
+      app: company
+      slot: blue
+      production: "yes"
