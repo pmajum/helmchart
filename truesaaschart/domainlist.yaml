@@ -11,7 +11,7 @@ deployments:
   - service: company
     namespace: poc-company
     replicas: 1
-    image: prasenjit/company-service:v1
+    image: prasenjit/company-service:v2
     labels:
       app: company
       slot: blue
